@@ -24,9 +24,8 @@ Sample structure of JSON for reference:
 '''
 
 import random
-import sys
 
-import app.utils.table_util 
+import app.utils.table_util as tb
 # app\utils\table_util.py
 
 def dummy_data_generation(size, userID):
