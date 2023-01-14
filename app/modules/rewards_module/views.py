@@ -35,5 +35,4 @@ def send_to_s3():
     s3.upload_file('./rewards.csv', 'sagemaker-studio-912ae080', 'rewards.csv')
 
 
-    
 send_to_s3()
