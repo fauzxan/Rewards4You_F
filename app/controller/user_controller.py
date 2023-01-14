@@ -59,4 +59,4 @@ def dummy_data_generation(size, userID):
     print(table)
     return table
 
-dummy_data_generation(20, '6556546833787493303')
+dummy_data_generation(10, '6556546833787493303')

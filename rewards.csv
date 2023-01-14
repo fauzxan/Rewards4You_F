@@ -1,0 +1,11 @@
+price_value,type_of_product,merchant_id,reward_id,tier_status,target_merchant
+276,electronics,1,1,1,"[1, 1, 0]"
+268,sports,1,1,1,"[0, 0, 2]"
+376,home,1,1,1,"[2, 0, 1]"
+47,apparel,1,1,1,"[0, 1, 1]"
+361,sports,1,1,1,"[1, 0, 2]"
+230,apparel,1,1,1,"[0, 0, 2]"
+433,books,1,1,1,"[1, 2, 2]"
+487,food,1,1,1,"[1, 2, 2]"
+432,books,1,1,1,"[1, 0, 2]"
+164,sports,1,1,1,"[0, 1, 0]"
