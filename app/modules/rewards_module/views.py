@@ -36,10 +36,14 @@ def generate_csv(data):
 def send_to_s3():
     sess = sagemaker.Session()
     region = sess.boto_region_name
-    s3_client = boto3.client('s3', region_name=region)
+    s3_client = boto3.client(
+        's3',
+        region_name = 'ap-southeast-1'
+        )
 
     write_bucket = sess.default_bucket()
     write_prefix = 'rewards'
-    
+
+
     
 send_to_s3()
