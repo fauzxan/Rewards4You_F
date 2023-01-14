@@ -25,11 +25,14 @@ Sample structure of JSON for reference:
 
 import random
 import sys
+import itertools
 
 import app.utils.aws_util as tb
 
 
 def dummy_data_generation(size, userID):
+    targets = list(itertools.permutations([1, 2, 3]))
+    print(targets)
     product_types = [
         "electronics",
         "food",
@@ -45,18 +48,19 @@ def dummy_data_generation(size, userID):
         if user['user_id'] == userID:
             break
     user = user_data[index]
+    user = user_data[index]
     table = []
     for i in range(size):
         data = {}
         data['price_value'] = random.randint(1,500)
         data['type_of_product'] = product_types[random.randint(0, len(product_types)-1)]
         data['preferred_merchant'] = user['merchant_preference_id'] # User preference
-        data['reward_id'] = user['reward_preference_id']
+        data['reward_id'] = user['rewards_preferance_id']
         data['tier_status'] = user['tier_status_id']
-        data['target_merchant'] = str([random.randint(0,2) for _ in range(3)]).replace("[","").replace("]","")
+        data['target_merchant'] = str(targets[random.randint(0,len(targets)-1)]).replace("(","").replace(")","")
         table.append(data)
     return table
 
 
-# dummy_data_generation(100, '6556546833787493303')
+print(dummy_data_generation(100, '411228e5-53c8-4350-89a9-89436b5b6297'))
 
