@@ -11,6 +11,9 @@ endpoint to send to SAGEMAKER
 '''
 # from decimal import Decimal
 import csv
+import sagemaker
+import boto3
+
 
 def generate_csv(data):
     f = csv.writer(open('rewards.csv', 'w', newline=''))
@@ -29,3 +32,14 @@ def generate_csv(data):
 
 # data = [{'price_value': 276, 'type_of_product': 'electronics', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [1, 1, 0]}, {'price_value': 268, 'type_of_product': 'sports', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [0, 0, 2]}, {'price_value': 376, 'type_of_product': 'home', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [2, 0, 1]}, {'price_value': 47, 'type_of_product': 'apparel', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [0, 1, 1]}, {'price_value': 361, 'type_of_product': 'sports', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [1, 0, 2]}, {'price_value': 230, 'type_of_product': 'apparel', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [0, 0, 2]}, {'price_value': 433, 'type_of_product': 'books', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [1, 2, 2]}, {'price_value': 487, 'type_of_product': 'food', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [1, 2, 2]}, {'price_value': 432, 'type_of_product': 'books', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [1, 0, 2]}, {'price_value': 164, 'type_of_product': 'sports', 'merchant_id': Decimal('1'), 'reward_id': Decimal('1'), 'tier_status': Decimal('1'), 'target_merchant': [0, 1, 0]}]
 # generate_csv(data)
+
+def send_to_s3():
+    sess = sagemaker.Session()
+    region = sess.boto_region_name
+    s3_client = boto3.client('s3', region_name=region)
+
+    write_bucket = sess.default_bucket()
+    write_prefix = 'rewards'
+    
+    
+send_to_s3()

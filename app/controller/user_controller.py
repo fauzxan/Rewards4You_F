@@ -25,7 +25,8 @@ Sample structure of JSON for reference:
 
 import random
 
-import app.utils.table_util as tb
+
+import app.utils.aws_util as tb
 # app\utils\table_util.py
 
 def dummy_data_generation(size, userID):
@@ -50,7 +51,7 @@ def dummy_data_generation(size, userID):
         data = {}
         data['price_value'] = random.randint(1,500)
         data['type_of_product'] = product_types[random.randint(0, len(product_types)-1)]
-        data['merchant_id'] = user['merchant_preference_id'] # User preference 
+        data['preferred_merchant'] = user['merchant_preference_id'] # User preference 
         data['reward_id'] = user['reward_preference_id']
         data['tier_status'] = user['tier_status_id']
         data['target_merchant'] =[random.randint(0,2) for _ in range(3)]
@@ -58,4 +59,6 @@ def dummy_data_generation(size, userID):
     print(table)
     return table
 
+
 dummy_data_generation(10, '6556546833787493303')
+
