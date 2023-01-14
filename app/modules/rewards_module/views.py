@@ -1,9 +1,9 @@
 '''
 Rewards endpoint:
 This will be a put request, where the body is a json file
-1. Once dummy data is generated, it will call the rewards 
+1. Once dummy data is generated, it will call the rewards
 endpoint to send to SAGEMAKER
-2. This endpoint will also call the function to generate 
+2. This endpoint will also call the function to generate
     the csv file from json data.
 3. GET endpoint exposed to the get recommendation list button
     (Called from frontend)
@@ -11,7 +11,6 @@ endpoint to send to SAGEMAKER
 '''
 from decimal import Decimal
 import csv
-import sagemaker
 import boto3
 
 
@@ -26,7 +25,7 @@ def generate_csv(data):
                 reward['preferred_merchant'],
                 reward['reward_id'],
                 reward['tier_status'],
-                reward['target_merchant']   
+                reward['target_merchant']
             ]
         )
 
@@ -35,5 +34,5 @@ def send_to_s3():
     s3.upload_file('./rewards.csv', 'sagemaker-studio-912ae080', 'rewards.csv')
 
 
-    
+
 send_to_s3()
