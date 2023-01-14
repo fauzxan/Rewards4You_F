@@ -14,10 +14,6 @@ table = dynamoDB.Table('user')
 app = Flask(__name__)
 
 
-if __name__ == "__main__":
-
-    app.run(debug=True)
-
 
 @app.route('/')
 def index():
@@ -69,7 +65,7 @@ def login():
 
     if password == items[0]['password']:
         user_id =  items[0]['user_id']
-        dataset= dummy_data_generation(user_id,10,000)
+        dataset= dummy_data_generation(10000, user_id)
         generate_csv(dataset)
         send_to_s3()
         return "Record Found", 200
@@ -78,4 +74,8 @@ def login():
     return "Record not found", 400
 
 
+
+if __name__ == "__main__":
+
+    app.run(debug=True)
 

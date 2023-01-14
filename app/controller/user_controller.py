@@ -55,12 +55,12 @@ def dummy_data_generation(size, userID):
         data['price_value'] = random.randint(1,500)
         data['type_of_product'] = product_types[random.randint(0, len(product_types)-1)]
         data['preferred_merchant'] = user['merchant_preference_id'] # User preference
-        data['reward_id'] = user['rewards_preferance_id']
+        data['reward_id'] = user['rewards_preference_id']
         data['tier_status'] = user['tier_status_id']
         data['target_merchant'] = str(targets[random.randint(0,len(targets)-1)]).replace("(","").replace(")","")
         table.append(data)
     return table
 
 
-print(dummy_data_generation(100, '411228e5-53c8-4350-89a9-89436b5b6297'))
+# print(dummy_data_generation(100, '411228e5-53c8-4350-89a9-89436b5b6297'))
 
