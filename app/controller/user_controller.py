@@ -26,8 +26,8 @@ Sample structure of JSON for reference:
 import random
 import sys
 
-import table_util
-
+import app.utils.table_util 
+# app\utils\table_util.py
 
 def dummy_data_generation(size, userID):
     product_types = [
@@ -38,7 +38,7 @@ def dummy_data_generation(size, userID):
         "books",
         "sports"
     ]
-    user_data = table_util.retrieve_all_items('user')
+    user_data = tb.retrieve_all_items('user')
     # print('user',user_data)
     index = -1
     for user in user_data:

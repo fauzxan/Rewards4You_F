@@ -9,7 +9,7 @@ endpoint to send to SAGEMAKER
     (Called from frontend)
     Takes data from SAGEMAKER
 '''
-from decimal import Decimal
+# from decimal import Decimal
 import csv
 
 def generate_csv(data):
