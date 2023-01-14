@@ -57,7 +57,7 @@ def dummy_data_generation(size, userID):
         data['preferred_merchant'] = user['merchant_preference_id'] # User preference 
         data['reward_id'] = user['rewards_preferance_id']
         data['tier_status'] = user['tier_status_id']
-        data['target_merchant'] = str([random.randint(i,2) for i in range(3)]).replace("[","").replace("]","")
+        data['target_merchant'] = str(targets[random.randint(0,len(targets)-1)]).replace("(","").replace(")","")
         table.append(data)
     return table
 
