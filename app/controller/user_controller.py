@@ -40,7 +40,6 @@ def dummy_data_generation(size, userID):
         "sports"
     ]
     user_data = tb.retrieve_all_items('user')
-    # print('user',user_data)
     index = -1
     for user in user_data:
         index += 1
@@ -57,9 +56,8 @@ def dummy_data_generation(size, userID):
         data['tier_status'] = user['tier_status_id']
         data['target_merchant'] = str([random.randint(0,2) for _ in range(3)]).replace("[","").replace("]","")
         table.append(data)
-    print(table)
     return table
 
 
-dummy_data_generation(100, '6556546833787493303')
+# dummy_data_generation(100, '6556546833787493303')
 
