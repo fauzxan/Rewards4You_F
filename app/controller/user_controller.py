@@ -24,10 +24,11 @@ Sample structure of JSON for reference:
 '''
 
 import random
+import sys
 
+sys.path.insert(1, 'app\\utils\\')
+import aws_util as tb
 
-import app.utils.aws_util as tb
-# app\utils\table_util.py
 
 def dummy_data_generation(size, userID):
     product_types = [
@@ -60,5 +61,5 @@ def dummy_data_generation(size, userID):
     return table
 
 
-dummy_data_generation(10, '6556546833787493303')
+dummy_data_generation(100, '6556546833787493303')
 

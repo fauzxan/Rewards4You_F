@@ -43,4 +43,3 @@ def retrieve_all_items(table):
         response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
         data.extend(response['Items'])
     return data
-get_resource_config('s3', 'us-east-1').upload_file('rewards.csv')
