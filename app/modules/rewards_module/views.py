@@ -11,6 +11,8 @@ endpoint to send to SAGEMAKER
 '''
 from decimal import Decimal
 import csv
+import io
+import pandas as pd
 import boto3
 from app.utils.aws_util import get_resource_config
 
@@ -33,3 +35,9 @@ def generate_csv(data):
 def send_to_s3():
     s3 = boto3.client('s3')
     s3.upload_file('./rewards.csv', 'sagemaker-studio-912ae080', 'rewards.csv')
+
+def convert_csv_to_fileobject():
+    data = pd.read_csv('./rewards.csv')
+    text_file = io.StringIO()
+    data.to_csv(text_file, header=None, index=None)
+    return text_file
