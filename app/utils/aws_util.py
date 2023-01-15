@@ -8,9 +8,7 @@ Output: An open connection to that specified resource
 def get_resource_config(resource, region='ap-southeast-1'):
     return boto3.resource(
         service_name = resource,
-        region_name = region,
-        aws_access_key_id = 'AKIASHNMXUT3RMS7EWFW', 
-        aws_secret_access_key = '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'
+        region_name = region
         )
 
 '''

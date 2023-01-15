@@ -12,6 +12,7 @@ endpoint to send to SAGEMAKER
 from decimal import Decimal
 import csv
 import boto3
+from app.utils.aws_util import get_resource_config
 
 
 def generate_csv(data):

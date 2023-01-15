@@ -2,13 +2,13 @@ from flask import Flask
 import uuid
 
 from flask import request, json
-from app.controller.table_util import get_resource_config
+from app.utils.aws_util import get_resource_config
 from app.keyfactory import KeyFactory
 from boto3.dynamodb.conditions import Key
 from app.controller.user_controller import dummy_data_generation
 from app.modules.rewards_module.views import generate_csv, send_to_s3
 
-dynamoDB = get_resource_config()
+dynamoDB = get_resource_config('dynamodb')
 table = dynamoDB.Table('user')
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def register():
     password = data.get('password')
     email = data.get('email')
     merchant_preference_id = data.get("merchant_preference_id")
-    reward_preference_id = data.get("reward_preference_id")
+    reward_preference_id = data.get("rewards_preference_id")
     tier_status_id = data.get("tier_status_id")
 
     print(user_name)
@@ -73,7 +73,9 @@ def login():
 
     return "Record not found", 400
 
-
+@app.route('/getModel', methods=['get'])
+def get_model():
+    pass
 
 if __name__ == "__main__":
 
