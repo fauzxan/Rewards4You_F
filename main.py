@@ -2,13 +2,14 @@ from flask import Flask
 import uuid
 
 from flask import request, json
-from app.controller.table_util import get_resource_config
+from app.utils.aws_util import get_resource_config
 from app.keyfactory import KeyFactory
 from boto3.dynamodb.conditions import Key
 from app.controller.user_controller import dummy_data_generation
-from app.modules.rewards_module.views import generate_csv, send_to_s3
+from app.controller.rewards_controller import ping_sagemaker
+from app.modules.rewards_module.views import generate_csv, send_to_s3, convert_csv_to_fileobject
 
-dynamoDB = get_resource_config()
+dynamoDB = get_resource_config('dynamodb')
 table = dynamoDB.Table('user')
 
 app = Flask(__name__)
@@ -72,6 +73,12 @@ def login():
 
 
     return "Record not found", 400
+
+@app.route('/test_ping_sagemaker', methods=['GET'])
+def test_ping_sagemaker():
+    body = convert_csv_to_fileobject()
+    response = ping_sagemaker(body)
+    return response['Body'].read().decode('ascii')
 
 
 
