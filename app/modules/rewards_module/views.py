@@ -15,7 +15,31 @@ import io
 import pandas as pd
 import boto3
 from app.utils.aws_util import get_resource_config
+from flask import request, json
+from app.utils.aws_util import get_resource_config
+from boto3.dynamodb.conditions import Key
+from app.controller.rewards_controller import rewards_controller
 
+dynamoDB = get_resource_config('dynamodb')
+table = dynamoDB.Table('user')
+
+def rewards():
+    data = json.loads(request.data)
+
+    email = data.get('email')
+    password = data.get('password')
+
+    response = table.query(
+                KeyConditionExpression=Key('email').eq(email)
+        )
+    items = response['Items']
+
+    preferred_merchant = items[0]['merchant_preference_id']
+    reward_id =    items[0]['rewards_preference_id']
+    tier_status = items[0]['tier_status_id']
+    price_value = items[0]['price']
+
+    return rewards_controller(preferred_merchant, reward_id, tier_status, price_value)
 
 def generate_csv(data):
     f = csv.writer(open('rewards.csv', 'w', newline=''))
