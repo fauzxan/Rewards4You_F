@@ -26,9 +26,10 @@ app = Flask(__name__)
 app.url_map.converters['list'] = ListConverter
 
 
-from app.modules import user
+from app.modules import user,rewards
 
 app.register_blueprint(user.module)
+app.register_blueprint(rewards.module)
 
 @app.route('/')
 def index():
