@@ -6,10 +6,11 @@
 import boto3
 
 def ping_sagemaker(body):
+
     client = boto3.client('sagemaker-runtime')
     response = client.invoke_endpoint(
         EndpointName = 'sagemaker-scikit-learn-2023-01-15-09-33-36-140',
-        Body = body,
+        Body = body.getvalue(),
         ContentType = 'text/csv',
         Accept = 'Accept'
     )

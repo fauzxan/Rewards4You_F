@@ -1,9 +1,7 @@
 version: "3.8"
+x-aws-vpc: "vpc-0470c486a46047f2f"
 services:
-  app:
-    build: .
-    command: python main.py
+  web:
+    image: public.ecr.aws/x3s1r9l3/r4u
     ports:
-      - "5000:5000"
-    volumes:
-      - .:/python-flask
+    - 5000

@@ -40,4 +40,5 @@ def convert_csv_to_fileobject():
     data = pd.read_csv('./rewards.csv')
     text_file = io.StringIO()
     data.to_csv(text_file, header=None, index=None)
+    print("\n\nDebug", text_file)
     return text_file

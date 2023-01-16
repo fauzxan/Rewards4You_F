@@ -3,6 +3,7 @@ import uuid
 
 from flask import request, json
 from app.utils.aws_util import get_resource_config
+from app.utils.aws_util import get_resource_config
 from app.keyfactory import KeyFactory
 from boto3.dynamodb.conditions import Key
 from app.controller.user_controller import dummy_data_generation
@@ -20,7 +21,7 @@ app = Flask(__name__)
 def index():
     return "App is up and running"
 
-@app.route('/signup', methods=['post'])
+@app.route('/signup', methods=['post'] )
 def signup():
     return "Sign up completed successfully"
 
@@ -85,5 +86,5 @@ def test_ping_sagemaker():
 
 if __name__ == "__main__":
 
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True, host="0.0.0.0")
 
