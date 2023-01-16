@@ -14,3 +14,6 @@ def ping_sagemaker(body):
         ContentType = 'text/csv',
         Accept = 'Accept'
     )
+
+def rewards_controller(preferred_merchant, reward_id, tier_status, price_value):
+    """ Generate Type Of Product and Reward Value and Return JSON Value"""
