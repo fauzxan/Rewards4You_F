@@ -30,7 +30,7 @@ app.url_map.converters['list'] = ListConverter
 from app.modules import user,rewards_module
 
 app.register_blueprint(user.module)
-# app.register_blueprint(rewards_module.module)
+app.register_blueprint(rewards_module.module)
 
 @app.route('/')
 def index():
@@ -77,7 +77,7 @@ def register():
 }
 '''
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
     print('here')
     data = json.loads(request.data)
@@ -97,7 +97,7 @@ def login():
         dataset= dummy_data_generation(10000, user_id)
         generate_csv(dataset)
         send_to_s3()
-        return str(rewards_controller("","",tier_status, int(price))), 200
+        return "Found", 200
 
 
     return "Record not found", 400

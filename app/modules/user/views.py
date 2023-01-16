@@ -5,6 +5,7 @@ from flask import request, json
 from app.utils.aws_util import get_resource_config
 from boto3.dynamodb.conditions import Key
 from app.controller.user_controller import dummy_data_generation, generate_csv, send_to_s3
+from app.controller.rewards_controller import rewards_controller
 
 dynamoDB = get_resource_config('dynamodb')
 table = dynamoDB.Table('user')
@@ -14,6 +15,8 @@ def login():
 
     email = data.get('email')
     password = data.get('password')
+    tier_status = data.get('tier_status')
+    price = data.get('price')
 
     response = table.query(
                 KeyConditionExpression=Key('email').eq(email)
@@ -25,7 +28,7 @@ def login():
         dataset= dummy_data_generation(10000, user_id)
         generate_csv(dataset)
         send_to_s3()
-        return "Record Found", 200
+        return str(rewards_controller("","",tier_status, int(price))), 200
 
     return "Record Not Found", 400
 
